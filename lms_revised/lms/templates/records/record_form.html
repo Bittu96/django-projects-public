@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <title>IMS</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="text-end">
+      <a class="btn btn-outline-secondary btn-sm mt-1" href="admin">Admin Panel</a>
+    </div>
+
+    <div class="mt-3 mb-4">
+      <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="control-label">Upload csv/tsv file here </label>
+          <input type="file" name="tsv_file" id="tsv_file" required="True" class="form-control form-control-sm">
+          <input class="btn btn-outline-primary btn-sm mt-3" type="submit">
+        </div>
+      </form>
+    </div>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} p-2" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+
+    <div class="row">
+      <div class="col-6">
+        <h4>Some Thing Data</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Code</th>
+              <th scope="col">Description</th>
+              <th scope="col">Date</th>
+              <th scope="col">stat_one</th>
+              <th scope="col">stat_two</th>
+            </tr>
+          </thead>
+          <tbody  id="thing_data">
+            {% for thing in thing_data %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ thing.code }}</td>
+              <td>{{ thing.description }}</td>
+              <td>{{ thing.date }}</td>
+              <td>{{ thing.stat_one }}</td>
+              <td>{{ thing.stat_two }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tbody id="all_thing_data" class="d-none">
+            {% for thing in all_thing_data %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ thing.code }}</td>
+              <td>{{ thing.description }}</td>
+              <td>{{ thing.date }}</td>
+              <td>{{ thing.stat_one }}</td>
+              <td>{{ thing.stat_two }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <buttton id="all_thing_btn" class="btn btn-outline-primary w-100 btn-sm"> View All</button>
+      </div>
+      <div class="col-1">
+      </div>
+
+      <div class="col-5">
+        <h4>Item Data</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Thing</th>
+              <th scope="col">Name</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+
+          <tbody id="item_data">
+            {% for item in item_data %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ item.thing }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.rating }}</td>
+              <td>{{ item.score }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+          <tbody id="all_item_data" class="d-none" >
+            {% for item in all_item_data %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ item.thing }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.rating }}</td>
+              <td>{{ item.score }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+        <button id="all_item_btn" class="btn btn-outline-primary w-100 btn-sm"> View All</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let all_thing_btn = document.getElementById('all_thing_btn');
+    let all_item_btn = document.getElementById('all_item_btn');
+    let thing_data = document.getElementById('thing_data');
+    let all_thing_data = document.getElementById('all_thing_data');
+    let item_data = document.getElementById('item_data');
+    let all_item_data = document.getElementById('all_item_data');
+
+    all_thing_btn.onclick = function() {
+      thing_data.classList.toggle('d-none');
+      all_thing_data.classList.toggle('d-none');
+      if (this.textContent == "Close") {
+        this.textContent = "View All";
+      }
+      else {
+        this.textContent = "Close";
+      }
+
+    };
+    all_item_btn.onclick = function() {
+      item_data.classList.toggle('d-none');
+      all_item_data.classList.toggle('d-none');
+      if (this.textContent == "Close") {
+        this.textContent = "View All";
+      }
+      else {
+        this.textContent = "Close";
+      }
+    };
+  </script>
+
+</body>
+
+
+</html>
