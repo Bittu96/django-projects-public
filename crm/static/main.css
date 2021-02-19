@@ -1,0 +1,13 @@
+.bg-main {
+    background-color: rgb(236, 236, 236);
+}
+
+#total-orders {
+    background-color: rgb(89, 137, 156);
+}
+#orders-delivered {
+    background-color: rgb(92, 163, 211);
+}
+#orders-pending {
+    background-color: rgb(119, 212, 208);
+}

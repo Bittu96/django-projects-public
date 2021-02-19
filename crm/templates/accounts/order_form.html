@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block content %}
+    <br />
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h3>create order</h3>
+        {{form}}
+        
+        <input type="submit" name="Submit">
+    </form>
+</div>
+{% endblock %}

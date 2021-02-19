@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <script data-ad-client="ca-pub-4330198021486846" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid" style="background-color: #F0F1E3;">
+        <nav class="navbar navbar-expand-lg navbar-light mb-4">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler9"
+                aria-controls="navbarToggler9" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggler9">
+                <ul class="navbar-nav m-auto navtext">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="about">ABOUT</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="calc">CALC</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="accounts/logout">LOGOUT</a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        Logged in by {{user.first_name}}
+                    </li>
+                    {% else %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="accounts/login">LOGIN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="accounts/register">REGISTER</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <h1 class="font-weight-light text-center">~Bittu's Site~</h1>
+        <div class="row">
+            <div class="col-12 col-lg-6 text-left d-flex flex-column justify-content-center p-4">
+                <div class="text-center p-4">
+                    <img class="w-75"
+                        src="https://static.vecteezy.com/system/resources/previews/000/262/102/non_2x/flat-fox-geometric-simple-shape-vector-illustration.jpg" />
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 text-left d-flex flex-column justify-content-center p-4">
+                <div class="text-center p-4">
+                    {% if user.is_authenticated %}
+
+                    <h1 class="font-weight-light mb-4"> Hello, {{user.first_name}}!</h1>
+                    <a class="btn btn-dark btn-sm w-25" href="about" role="button">Get started</a>
+                    <span class="font-weight-light"> or </span>
+                    <a class="btn btn-dark btn-sm w-25" href="accounts/logout" role="button">Logout</a>
+
+                    {% else %}
+
+                    {% for message in messages %}
+                    <div class="mb-4">
+                        <div class="alert alert-success w-50 m-auto" style="font-size: medium;" role="alert">
+                            {{message}}
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                    <a class="btn btn-dark btn-sm w-25" href="accounts/login" role="button">Login</a>
+                    <span class="font-weight-light"> or </span>
+                    <a class="btn btn-dark btn-sm w-25" href="accounts/register" role="button">Register</a>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

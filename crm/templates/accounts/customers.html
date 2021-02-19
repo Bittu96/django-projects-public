@@ -1,0 +1,96 @@
+{% extends 'main.html' %}
+{% block content %}
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="col-md">
+                    <div class="card" id="orders-delivere">
+                        <div class="card-header">
+                            <h5 class="card-title">Customer</h5>
+                        </div>
+                        <div class="card-body">
+                            <a href="" class="btn btn-outline-primary w-100 mb-2">Update Customer</a>
+                            <a href="" class="btn btn-outline-danger w-100">Delete Customer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col-md">
+                    <div class="card" id="orders-pendin">
+                        <div class="card-header">
+                            <h5 class="card-title">Contact Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-details"><span class="h6">Email: </span> {{customer.email}}</p>
+                            <p class="card-details"><span class="h6">Phone no.:</span> {{customer.phone}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col-md">
+                    <div class="card md-3" id="total-order">
+                        <div class="card-header">
+                            <h5 class="card-title"> Total orders</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"> {{total_orders}} </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div class="col-md">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="get">
+                                {{myFilter.form}}
+                                <button class="btn btn-primary btn-sm" type="Submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="col-md">
+                    <div class="card md-3">
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Date Ordered</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Update</th>
+                                        <th scope="col">Remove</th>
+                                    </tr>
+                                    {% for order in orders %}
+                                        <tr>
+                                            <td>{{order.product}}</td>
+                                            <td>{{order.product.category}}</td>
+                                            <td>{{order.date_created}}</td>
+                                            <td>{{order.status}}</td>
+                                            <td><a type="button" class="btn btn-sm btn-primary" href="{% url 'update_order' order.id %}">Update</a></td>
+                                            <td><a type="button" class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">remove</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </thead>
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

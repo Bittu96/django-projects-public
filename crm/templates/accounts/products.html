@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% block content %}
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="col-md">
+                    <div class="card md-3">
+                        <div class="card-header">
+                            <h5 class="card-title"> Products </h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in products %}
+                                        <tr>
+                                            <td>{{i.name}}</td>
+                                            <td>{{i.category}}</td>
+                                            <td>{{i.price}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
